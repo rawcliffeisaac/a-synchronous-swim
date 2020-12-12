@@ -15,6 +15,18 @@ module.exports.initialize = (queue) => {
 module.exports.router = (req, res, next = () => {}) => {
   console.log('Serving request type ' + req.method + ' for url ' + req.url);
   res.writeHead(200, headers);
-  res.end();
+  let serverMessage = undefined;
+  if (req.method === 'GET') {
+    serverMessage = randomMessage();
+  }
+  res.end(serverMessage);
+  // if req.method is 'GET'
+    // res.end(randomMessage)
   next(); // invoke next() at the end of a request to help with testing!
+};
+
+// function that creates random command
+const randomMessage = () => {
+  let messages = ['up', 'down', 'left', 'right'];
+  return messages[Math.floor(Math.random() * messages.length)];
 };
