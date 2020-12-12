@@ -11,8 +11,8 @@ let messageQueue = null;
 module.exports.initialize = (queue) => {
   messageQueue = queue;
 };
-
-module.exports.router = (req, res, next = ()=>{}) => {
+// Fill in the next default function?
+module.exports.router = (req, res, next = () => {}) => {
   console.log('Serving request type ' + req.method + ' for url ' + req.url);
   res.writeHead(200, headers);
   res.end();

@@ -11,18 +11,22 @@ const httpHandler = require('../js/httpHandler');
 describe('server responses', () => {
 
   it('should respond to a OPTIONS request', (done) => {
-    let {req, res} = server.mock('/', 'OPTIONS');
+    let {req, res} = server.mock('/', 'OPTIONS'); // sets req
 
-    httpHandler.router(req, res);
+    httpHandler.router(req, res); // maybe a 3rd param?
+
     expect(res._responseCode).to.equal(200);
     expect(res._ended).to.equal(true);
     expect(res._data.toString()).to.be.empty;
-
     done();
   });
 
   it('should respond to a GET request for a swim command', (done) => {
     // write your test here
+    let {req, res} = server.mock('/', 'GET');
+    httpHandler.router(req, res);
+    console.log('this is req', req);
+    console.log('this is res', res);
     done();
   });
 
