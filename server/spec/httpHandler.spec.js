@@ -22,14 +22,16 @@ describe('server responses', () => {
 
   it('should respond to a GET request for a swim command', (done) => {
     // write your test here
-    let {req, res} = server.mock('http://127.0.0.1:3000/', 'GET');
-    httpHandler.router(req, res);
+    let {req, res} = server.mock('/', 'GET');
+    httpHandler.router(req, res, () => {
+      res.write('message: left');
+    });
 
     console.log('this is req', req);
     console.log('this is res', res);
     expect(res._responseCode).to.equal(200);
     expect(res._ended).to.equal(true);
-
+    expect(res._data.toString()).to.equal('message: left');
     done();
   });
 
