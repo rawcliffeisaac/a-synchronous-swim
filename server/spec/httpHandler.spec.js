@@ -26,8 +26,6 @@ describe('server responses', () => {
 
     // add random command to response message
     httpHandler.router(req, res);
-    console.log('this is req', req);
-    console.log('this is res', res);
     expect(res._responseCode).to.equal(200);
     expect(res._ended).to.equal(true);
     expect(['left', 'right', 'up', 'down']).to.contain(res._data.toString()); // contain one of the four commands
